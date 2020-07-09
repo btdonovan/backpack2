@@ -34,7 +34,10 @@ class App extends React.Component {
   }
 
   addItem(item){
-    this.setState(state => ({currentBackpack : [...state.currentBackpack , "item"]}))
+    // this.setState(state => ({currentBackpack : [...state.currentBackpack , "item"]}))
+    this.setState({
+      currentBackpack: this.state.currentBackpack.concat(item)
+    })
   }
 
   render() {

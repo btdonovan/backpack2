@@ -1,18 +1,19 @@
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
-  user: "postgres",
-  password: "Gameboy2321",
+  user: "backpack",
+  host: 'database',
   database: "backpack",
-  host: "localhost",
+  password: "weather_password",
   port: 5432,
 });
 
 const listItems = (request, response) => {
   pool.query("SELECT * FROM item_list", (error, results) => {
     if (error) {
-      throw error;
+      console.log(error);
     }
+    console.log(results)
     response.status(200).json(results.rows);
   });
 };

@@ -4,25 +4,33 @@ services:
   frontend_server:
     build: frontend_server/
     depends_on:
-      - 'database_server'
+      - 'database'
       - 'api_server'
     ports: 
       - '3000:3000'
     stdin_open: true
+    # networks:
+    #   - backpack-network
 
   api_server:
     build: api_server/
     depends_on:
-      - 'database_server'
+      - 'database'
     ports:
       - '3001:3001'
+    # networks:
+    #   - backpack-network
 
-  database_server:
-    image: postgres
-    ports:
-        - "5432:5432"
-    volumes:
-        - ./database_server/dataLoad.sql:/docker-entrypoint-initdb.d/init.sql
+  database:
+    build: database_server/
+    restart: always
     environment:
-        POSTGRES_PASSWORD: badPassword
-
+      POSTGRES_USER: backpack
+      POSTGRES_PASSWORD: weather_password
+      POSTGRES_DB: backpack
+    # networks:
+    #   - backpack-network
+        
+  # networks:
+  #   weather-network:
+  #     name: backpack-network

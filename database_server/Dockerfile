@@ -1,11 +1,8 @@
-FROM node:8.10-alpine
+FROM postgres:12.3-alpine
 
-RUN mkdir -p /src/db
+COPY *.sql /docker-entrypoint-initdb.d/
 
-WORKDIR /src/db
+# EXPOSE 5432
 
-COPY . /src/db
+RUN chmod a+r /docker-entrypoint-initdb.d/
 
-EXPOSE 5432
-
-CMD [ "node", "server.js" ]

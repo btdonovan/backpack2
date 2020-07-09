@@ -1,4 +1,4 @@
-CREATE DATABASE backpack;
+-- CREATE DATABASE backpack;
 CREATE TABLE backpack(
   backpack_id serial,
   name text,
