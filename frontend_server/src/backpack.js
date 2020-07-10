@@ -2,6 +2,10 @@ import React from 'react'
 
 function Backpack(props){
     console.log(props.backpack)
+    let combinedWeight = 0
+    for (var i = 0; i < props.backpack.length; i++) {
+        combinedWeight += props.backpack[i].item_weight
+    }
     return (
         <div>
         <ul>
@@ -10,6 +14,7 @@ function Backpack(props){
         </ul>
         <ul>
             Your Backpack
+            {'Combined Weight: '}{combinedWeight}
             {props.backpack.map((item, index) => <li key={index}>{item.name} - {item.item_weight}</li>)}
         </ul>
         </div>

@@ -52,7 +52,7 @@ class App extends React.Component {
     else{
       return(
         <div>
-          Backpack but false
+          {/* Backpack but false */}
           <Backpack items = {this.state.availableItems} backpack = {this.state.currentBackpack} addItem = {this.addItem}/>
         </div>
       )
